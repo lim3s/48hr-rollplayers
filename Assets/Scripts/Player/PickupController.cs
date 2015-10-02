@@ -49,6 +49,14 @@ public class PickupController : MonoBehaviour {
 	void PickupObject(){
 		grabbedObj = GetClosest ().gameObject;
 		hasPickup = true;
+
+		Consumable consume = grabbedObj.gameObject.GetComponent<Consumable> ();
+		if (consume != null) {
+			/*Increase stamina or something*/
+			grabbedObj = null;
+			hasPickup = false;
+			consume.eat();
+		}
 	}
 
 	void Poop(){
