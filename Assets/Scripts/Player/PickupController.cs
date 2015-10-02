@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class PickupController : MonoBehaviour {
-
+	[SerializeField]
+	private GameObject poop;
+	[SerializeField]
+	private Rigidbody2D rb;
 	[HideInInspector]
 	public bool hasPickup;
-	public float pickupDist;
+	public float pickupDist = 10f;
 	private GameObject grabbedObj;
 
 	// Use this for initialization
@@ -15,14 +18,20 @@ public class PickupController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	if (Input.GetKeyDown (KeyCode.JoystickButton1)) {
+		if (Input.GetKeyDown (KeyCode.JoystickButton1)) {
 			if(hasPickup){
+				print ("drop");
 				DropObject();
 			} else if (CheckProximity()){
+				print ("Pickup attempt");
 				PickupObject();
 			} else {
 				Poop();
 			}
+		}
+
+		if (hasPickup) {
+			grabbedObj.transform.position = transform.position;
 		}
 	}
 
@@ -39,9 +48,14 @@ public class PickupController : MonoBehaviour {
 		hasPickup = true;
 	}
 
-	void Poop(){}
+	void Poop(){
+		GameObject poopy = (GameObject)Instantiate (poop, transform.position, Quaternion.identity);
+		poopy.GetComponent<Rigidbody2D> ().velocity = rb.velocity + Vector2.down * 5f;
+		GameObject.Destroy (poopy, 10f);
+	}
 
 	void DropObject(){
+		grabbedObj.GetComponent<Rigidbody2D> ().velocity = rb.velocity + Vector2.down * 1.5f;
 		grabbedObj = null;
 		hasPickup = false;
 	}
