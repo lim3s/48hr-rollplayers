@@ -61,6 +61,7 @@ public class FlightController : MonoBehaviour {
 	}
 
 	public void Flap() {
+		print ("Flap!");
 		rb.velocity += Vector2.up * flapStrength;
 	}
 }
