@@ -60,6 +60,9 @@ public class PickupController : MonoBehaviour {
 	void Poop(){
 		GameObject poopy = (GameObject)Instantiate (poop, transform.position, Quaternion.identity);
 		poopy.GetComponent<Rigidbody2D> ().velocity = rb.velocity + Vector2.down * 5f;
+
+		Quaternion newRotation = Quaternion.Euler (transform.rotation.eulerAngles.x + 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+		poopy.transform.rotation = newRotation;
 		GameObject.Destroy (poopy, 10f);
 	}
 
