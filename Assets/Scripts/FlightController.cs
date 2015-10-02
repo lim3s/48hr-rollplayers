@@ -21,6 +21,8 @@ public class FlightController : MonoBehaviour {
 	Vector2 liftVector;
 
 	Vector2 newVel;
+
+	public bool wingsIn = false;
 	// Use this for initialization
 	void Start () {
 	}
@@ -32,13 +34,16 @@ public class FlightController : MonoBehaviour {
 		currSpeed = currVelocity.magnitude;
 		dragVector = currVelocity * -1;
 
-		Rotate ();
-		CalcVelocity ();
-		AddVectors ();
+		if (!wingsIn) {
+			Rotate ();
+			CalcVelocity ();
+			AddVectors ();
+		}
+		AddGravity ();
 	}
 
 	void Rotate() {
-		newVel = (Vector3.Project (currVelocity, currRot)*0.2f);
+		newVel = (Vector3.Project (currVelocity, currRot) * 0.2f);
 		newVel += (currVelocity * 0.8f);
 	}
 
@@ -57,11 +62,29 @@ public class FlightController : MonoBehaviour {
 	}
 
 	void AddVectors() {
-		rb.velocity = newVel + liftVector - Vector2.up * gravity;
+		rb.velocity = newVel + liftVector;
+	}
+
+	void AddGravity() {
+		rb.velocity -= Vector2.up * gravity;
 	}
 
 	public void Flap() {
-		print ("Flap!");
+		if (wingsIn) {
+			return;
+		}
+		//if (Vector2.up >
 		rb.velocity += Vector2.up * flapStrength;
+	}
+
+	public void Wings(bool areIn) {
+		print ("Wings: " + areIn);
+		wingsIn = areIn;
+	}
+
+	public void ResetPos() {
+		print ("Reset");
+		transform.position = new Vector2 (-60, 40);
+		rb.velocity = Vector2.zero;
 	}
 }

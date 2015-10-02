@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	float vertical;
 
 	bool flag = true;
+	bool flag2 = true;
 	// Use this for initialization
 	void Start () {
 	
@@ -19,12 +20,12 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Mathf.Abs (Input.GetAxis ("Horizontal")) > deadZone) {
+		if (Mathf.Abs (Input.GetAxis ("Horizontal")) > deadZone && !flight.wingsIn) {
 			horizontal = Input.GetAxis ("Horizontal");
 		} else {
 			horizontal = GetComponent<Rigidbody2D>().velocity.normalized.x;
 		}
-		if (Mathf.Abs (Input.GetAxis ("Vertical")) > deadZone) {
+		if (Mathf.Abs (Input.GetAxis ("Vertical")) > deadZone && !flight.wingsIn) {
 			vertical = Input.GetAxis ("Vertical");
 		} else {
 			vertical = GetComponent<Rigidbody2D>().velocity.normalized.y;
@@ -38,6 +39,18 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (Input.GetAxis ("Flap") < 0.2 && !flag) {
 			flag = true;
+		}
+
+		if (Input.GetAxis ("WingsIn") > 0.8 && flag2) {
+			flight.Wings(true);
+			flag2 = false;
+		}
+		if (Input.GetAxis ("WingsIn") < 0.2 && !flag2) {
+			flight.Wings(false);
+			flag2 = true;
+		}
+		if (Input.GetButtonDown ("Reset")) {
+			flight.ResetPos();
 		}
 	}
 }
