@@ -11,12 +11,16 @@ public class FlightController : MonoBehaviour {
 	float dragAmount = 5f;
 	[SerializeField]
 	float flapStrength = 10f;
+	[SerializeField]
+	float gravity = 9.81f;
 
 	Vector2 currRot;
 	float currSpeed;
 	Vector2 currVelocity;
 	Vector2 dragVector;
 	Vector2 liftVector;
+
+	Vector2 newVel;
 	// Use this for initialization
 	void Start () {
 	}
@@ -28,13 +32,18 @@ public class FlightController : MonoBehaviour {
 		currSpeed = currVelocity.magnitude;
 		dragVector = currVelocity * -1;
 
+		Rotate ();
 		CalcVelocity ();
 		AddVectors ();
 	}
 
+	void Rotate() {
+		newVel = (Vector3.Project (currVelocity, currRot)*0.2f);
+		newVel += (currVelocity * 0.8f);
+	}
+
 	void CalcVelocity() {
 		// Drag
-		float dragAngle = Vector2.Angle (currRot, dragVector);
 
 
 		// Lift
@@ -48,6 +57,6 @@ public class FlightController : MonoBehaviour {
 	}
 
 	void AddVectors() {
-		rb.velocity = new Vector2 (rb.velocity.x + liftVector.x, rb.velocity.y + liftVector.y);
+		rb.velocity = newVel + liftVector - Vector2.up * gravity;
 	}
 }
