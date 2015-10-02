@@ -7,6 +7,7 @@ public class Breakable : MonoBehaviour {
 	public Sprite brokenObj;
 
 	bool broken = false;
+	[SerializeField]
 	float threshold = 5;
 	SpriteRenderer myRenderer;
 
@@ -28,11 +29,13 @@ public class Breakable : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		if(!broken){
-			float velocity = coll.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
-			/*Check if player is flying fast enough*/
-			if(velocity >= threshold){
-				breakObject();
+		if (coll.transform.tag == "Breaker") {
+			if (!broken) {
+				float velocity = coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude;
+				/*Check if object is flying fast enough*/
+				if (velocity >= threshold) {
+					breakObject ();
+				}
 			}
 		}
 	}
