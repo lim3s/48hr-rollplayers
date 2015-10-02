@@ -11,9 +11,11 @@ public class PickupController : MonoBehaviour {
 	public float pickupDist = 10f;
 	private GameObject grabbedObj;
 
+	SpriteDirection sprite;
+
 	// Use this for initialization
 	void Start () {
-	
+		sprite = GetComponent<SpriteDirection> ();
 	}
 	
 	// Update is called once per frame
@@ -25,6 +27,7 @@ public class PickupController : MonoBehaviour {
 			} else if (CheckProximity()){
 				print ("Pickup attempt");
 				PickupObject();
+				sprite.grab ();
 			} else {
 				Poop();
 			}

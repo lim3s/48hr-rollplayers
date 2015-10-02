@@ -23,6 +23,7 @@ public class FlightController : MonoBehaviour {
 	Vector2 newVel;
 
 	public bool wingsIn = false;
+	public bool flapping = true;
 	// Use this for initialization
 	void Start () {
 	}
@@ -75,6 +76,7 @@ public class FlightController : MonoBehaviour {
 		}
 		//if (Vector2.up >
 		rb.velocity += Vector2.up * flapStrength;
+		flapping = true;
 	}
 
 	public void Wings(bool areIn) {
