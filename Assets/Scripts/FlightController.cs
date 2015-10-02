@@ -59,4 +59,8 @@ public class FlightController : MonoBehaviour {
 	void AddVectors() {
 		rb.velocity = newVel + liftVector - Vector2.up * gravity;
 	}
+
+	public void Flap() {
+		rb.velocity += Vector2.up * flapStrength;
+	}
 }
