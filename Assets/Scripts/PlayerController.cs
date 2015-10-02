@@ -22,12 +22,12 @@ public class PlayerController : MonoBehaviour {
 		if (Mathf.Abs (Input.GetAxis ("Horizontal")) > deadZone) {
 			horizontal = Input.GetAxis ("Horizontal");
 		} else {
-			//horizontal = 0;
+			horizontal = GetComponent<Rigidbody2D>().velocity.normalized.x;
 		}
 		if (Mathf.Abs (Input.GetAxis ("Vertical")) > deadZone) {
 			vertical = Input.GetAxis ("Vertical");
 		} else {
-			//vertical = 0;
+			vertical = GetComponent<Rigidbody2D>().velocity.normalized.y;
 		}
 		float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 5 * Time.deltaTime);
