@@ -12,6 +12,8 @@ public class FlightController : MonoBehaviour {
 	[SerializeField]
 	float flapStrength = 10f;
 	[SerializeField]
+	float maxFlap = 80f;
+	[SerializeField]
 	float gravity = 9.81f;
 
 	Vector2 currRot;
@@ -23,7 +25,6 @@ public class FlightController : MonoBehaviour {
 	Vector2 newVel;
 
 	public bool wingsIn = false;
-	public bool flapping = true;
 	// Use this for initialization
 	void Start () {
 	}
@@ -70,13 +71,25 @@ public class FlightController : MonoBehaviour {
 		rb.velocity -= Vector2.up * gravity;
 	}
 
-	public void Flap() {
+	public void Flap(float strength) {
+		if (strength > maxFlap) {
+			strength = maxFlap;
+		} else if (strength < flapStrength) {
+			strength = flapStrength;
+		}
 		if (wingsIn) {
 			return;
 		}
-		//if (Vector2.up >
-		rb.velocity += Vector2.up * flapStrength;
-		flapping = true;
+		print ("FlapStrength: " + strength);
+		// Flap forward
+//		Vector2 flap = transform.right * flapStrength;
+//		rb.velocity = rb.velocity + flap;
+		// Flap up
+		Vector2 flap = transform.up * strength;
+		if (flap.y < 0) {
+			flap *= -1;
+		}
+		rb.velocity += flap;
 	}
 
 	public void Wings(bool areIn) {

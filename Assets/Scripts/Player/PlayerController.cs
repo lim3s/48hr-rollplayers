@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour {
 	float horizontal;
 	float vertical;
 
-	bool flag = true;
+	bool flag = false;
 	bool flag2 = true;
+	float timer = 0;
 	// Use this for initialization
 	void Start () {
 	
@@ -33,12 +34,13 @@ public class PlayerController : MonoBehaviour {
 		float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 5 * Time.deltaTime);
 
-		if (Input.GetAxis ("Flap") > 0.8 && flag) {
-			flight.Flap();
-			flag = false;
-		}
-		if (Input.GetAxis ("Flap") < 0.2 && !flag) {
+		if (Input.GetAxis ("Flap") > 0.8 && !flag) {
+			timer = 0;
 			flag = true;
+		}
+		if (Input.GetAxis ("Flap") < 0.2 && flag) {
+			flight.Flap (timer);
+			flag = false;
 		}
 
 		if (Input.GetAxis ("WingsIn") > 0.8 && flag2) {
@@ -51,6 +53,9 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (Input.GetButtonDown ("Reset")) {
 			flight.ResetPos();
+		}
+		if (flag) {
+			timer += Time.deltaTime * 80;
 		}
 	}
 }
