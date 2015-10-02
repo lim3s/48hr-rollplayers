@@ -21,11 +21,9 @@ public class PickupController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.JoystickButton1)) {
-			if(hasPickup){
-				print ("drop");
+			if(hasPickup){;
 				DropObject();
 			} else if (CheckProximity()){
-				print ("Pickup attempt");
 				PickupObject();
 				sprite.grab ();
 			} else {

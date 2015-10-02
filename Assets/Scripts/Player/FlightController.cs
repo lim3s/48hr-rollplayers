@@ -14,7 +14,11 @@ public class FlightController : MonoBehaviour {
 	[SerializeField]
 	float maxFlap = 80f;
 	[SerializeField]
+	float maxStamina = 3;
+	[SerializeField]
 	float gravity = 9.81f;
+	[SerializeField]
+	float regenRate = 0.2f;
 
 	Vector2 currRot;
 	float currSpeed;
@@ -22,11 +26,15 @@ public class FlightController : MonoBehaviour {
 	Vector2 dragVector;
 	Vector2 liftVector;
 
+	float currStamina;
+
 	Vector2 newVel;
 
 	public bool wingsIn = false;
+	public bool flapping = false;
 	// Use this for initialization
 	void Start () {
+		currStamina = maxStamina;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +49,7 @@ public class FlightController : MonoBehaviour {
 			CalcVelocity ();
 			AddVectors ();
 		}
+		RegenStamina ();
 		AddGravity ();
 	}
 
@@ -80,26 +89,40 @@ public class FlightController : MonoBehaviour {
 		if (wingsIn) {
 			return;
 		}
-		print ("FlapStrength: " + strength);
-		// Flap forward
-//		Vector2 flap = transform.right * flapStrength;
-//		rb.velocity = rb.velocity + flap;
-		// Flap up
-		Vector2 flap = transform.up * strength;
-		if (flap.y < 0) {
-			flap *= -1;
+		if (currStamina < 1) {
+			return;
 		}
-		rb.velocity += flap;
+		// Flap forward
+		Vector2 flap = transform.right * flapStrength;
+		rb.velocity = rb.velocity + flap;
+		// Flap up
+//		Vector2 flap = transform.up * strength;
+//		if (flap.y < 0) {
+//			flap *= -1;
+//		}
+//		rb.velocity += flap;
+		flapping = true;
+
+		currStamina -= 1;
+	}
+
+	void RegenStamina() {
+		currStamina += Time.fixedDeltaTime * regenRate;
+		if (currStamina > maxStamina) {
+			currStamina = maxStamina;
+		}
 	}
 
 	public void Wings(bool areIn) {
-		print ("Wings: " + areIn);
 		wingsIn = areIn;
 	}
 
 	public void ResetPos() {
-		print ("Reset");
 		transform.position = new Vector2 (-60, 40);
 		rb.velocity = Vector2.zero;
+	}
+
+	public float StaminaPercent() {
+		return currStamina / maxStamina;
 	}
 }
