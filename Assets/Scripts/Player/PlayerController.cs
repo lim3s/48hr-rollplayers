@@ -31,8 +31,16 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			vertical = GetComponent<Rigidbody2D>().velocity.normalized.y;
 		}
-		float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 5 * Time.deltaTime);
+		if (flight.wingsIn) {
+			horizontal = 0;
+			vertical = -1;
+			float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 1 * Time.deltaTime);
+		} else {
+			float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 5 * Time.deltaTime);
+		}
+
 
 		if (Input.GetAxis ("Flap") > 0.8 && !flag) {
 			timer = 0;
