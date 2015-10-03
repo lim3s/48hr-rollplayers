@@ -59,9 +59,9 @@ public class PlayerController : MonoBehaviour {
 			flight.Wings(false);
 			flag2 = true;
 		}
-		if (Input.GetButtonDown ("Reset")) {
-			flight.ResetPos();
-		}
+//		if (Input.GetButtonDown ("Reset")) {
+//			flight.ResetPos();
+//		}
 		if (flag) {
 			timer += Time.deltaTime * 80;
 		}

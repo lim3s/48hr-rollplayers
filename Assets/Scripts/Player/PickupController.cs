@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[RequireComponent (typeof (Rigidbody2D))]
 public class PickupController : MonoBehaviour {
 	[SerializeField]
 	private GameObject poop;
@@ -20,7 +20,7 @@ public class PickupController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.JoystickButton1)) {
+		if (Input.GetKeyDown (KeyCode.JoystickButton0)) {
 			if(hasPickup){;
 				DropObject();
 			} else if (CheckProximity()){
@@ -45,6 +45,7 @@ public class PickupController : MonoBehaviour {
 
 	void PickupObject(){
 		grabbedObj = GetClosest ().gameObject;
+		grabbedObj.GetComponent<Grabbable> ().grabObject ();
 		hasPickup = true;
 		sprite.grab ();
 		SoundManager.myManager.myEffects.playClip ("pickup");
@@ -69,6 +70,7 @@ public class PickupController : MonoBehaviour {
 
 	void DropObject(){
 		grabbedObj.GetComponent<Rigidbody2D> ().velocity = rb.velocity + Vector2.down * 1.5f;
+		grabbedObj.GetComponent<Grabbable> ().dropObject ();
 		grabbedObj = null;
 		hasPickup = false;
 		SoundManager.myManager.myEffects.playClip ("drop");

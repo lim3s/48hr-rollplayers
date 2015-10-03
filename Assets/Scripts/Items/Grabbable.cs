@@ -17,12 +17,12 @@ public class Grabbable : MonoBehaviour {
 		
 	}
 
-	void grabObject(){
+	public void grabObject(){
 		myCollider.enabled = false;
-		rb.gravityScale = 1;
 	}
 
-	void dropObject(){
+	public void dropObject(){
 		myCollider.enabled = true;
+		rb.gravityScale = 3;
 	}
 }

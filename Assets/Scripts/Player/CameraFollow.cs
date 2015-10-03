@@ -33,10 +33,10 @@ public class CameraFollow : MonoBehaviour {
 
 		halfHeight = cam.orthographicSize;
 		halfWidth = halfHeight * cam.aspect;
-		minX = bounds.bounds.min.x;
-		minY = bounds.bounds.min.y;
-		maxX = bounds.bounds.max.x;
-		maxY = bounds.bounds.max.y;
+		minX = bounds.bounds.min.x + halfWidth;
+		minY = bounds.bounds.min.y + halfHeight;
+		maxX = bounds.bounds.max.x - halfWidth;
+		maxY = bounds.bounds.max.y - halfHeight;
 
 	}
 	
