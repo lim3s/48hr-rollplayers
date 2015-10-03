@@ -10,7 +10,6 @@ public class CameraFollow : MonoBehaviour {
 	BoxCollider2D bounds;
 	[SerializeField]
 	float speed = 0.1f;
-	float distance = 10;
 	float speedThreshold = 150;
 
 	float minZoom = 20;

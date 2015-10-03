@@ -7,7 +7,7 @@ public class Grabbable : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		myCollider = GetComponent<Collider2D> ();
+		setup ();
 		rb = GetComponent<Rigidbody2D> ();
 		rb.gravityScale = 0;
 	}
@@ -15,6 +15,10 @@ public class Grabbable : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	protected void setup () {
+		myCollider = GetComponent<Collider2D> ();
 	}
 
 	public void grabObject(){

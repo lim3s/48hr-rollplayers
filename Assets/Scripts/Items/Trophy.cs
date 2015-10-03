@@ -16,7 +16,7 @@ public class Trophy : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Player") {
-			GameData.data.getTrophy(trophyID);
+			GameData.myData.getTrophy(trophyID);
 			Destroy(this);
 		}
 	}

@@ -11,14 +11,13 @@ public class BackgroundMusic : MonoBehaviour {
 
 	AudioSource levelMusic;
 	float volume = 0.7f;
-	int playing = 0;
-	bool part2 = false;
 
 	// Use this for initialization
 	void Start () {
 		levelMusic = GetComponent<AudioSource>();
 		levelMusic.loop = true;
 		startMusic (0, 0);
+		levelMusic.volume = volume;
 	}
 
 	public void startMusic(int level, int stage){

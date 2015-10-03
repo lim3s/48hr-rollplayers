@@ -45,7 +45,12 @@ public class PickupController : MonoBehaviour {
 
 	void PickupObject(){
 		grabbedObj = GetClosest ().gameObject;
-		grabbedObj.GetComponent<Grabbable> ().grabObject ();
+
+		Grabbable grab = grabbedObj.GetComponent<Grabbable> ();
+		if (grab != null) {
+			grab.grabObject ();
+		}
+
 		hasPickup = true;
 		sprite.grab ();
 		SoundManager.myManager.myEffects.playClip ("pickup");
