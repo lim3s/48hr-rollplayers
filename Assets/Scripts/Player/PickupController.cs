@@ -71,6 +71,7 @@ public class PickupController : MonoBehaviour {
 		grabbedObj.GetComponent<Rigidbody2D> ().velocity = rb.velocity + Vector2.down * 1.5f;
 		grabbedObj = null;
 		hasPickup = false;
+		SoundManager.myManager.myEffects.playClip ("drop");
 	}
 
 	Grabbable GetClosest(){

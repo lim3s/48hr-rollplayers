@@ -12,11 +12,14 @@ public class SoundEffects : MonoBehaviour {
 	public AudioClip trainhorn;
 	public AudioClip wallhit;
 	public AudioClip flap;
+	public AudioClip keycard;
+	public AudioClip drop;
+	public AudioClip objective;
 
 	AudioSource audio;
 	float volume = 0.7f;
 
-	enum Effects {smashing, pickup, poop, traincrash, trainhorn, wallhit, flap};
+	enum Effects {smashing, pickup, poop, traincrash, trainhorn, wallhit, flap, keycard, drop, objective};
 
 	// Use this for initialization
 	void Start () {
@@ -56,6 +59,15 @@ public class SoundEffects : MonoBehaviour {
 			break;
 		case Effects.flap:
 			audio.PlayOneShot(flap, volume);
+			break;
+		case Effects.keycard:
+			audio.PlayOneShot(keycard, volume);
+			break;
+		case Effects.drop:
+			audio.PlayOneShot(drop, volume);
+			break;
+		case Effects.objective:
+			audio.PlayOneShot(objective, volume);
 			break;
 		}
 	}
