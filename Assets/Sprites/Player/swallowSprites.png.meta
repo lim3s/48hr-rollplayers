@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 26e45944ebba3774fb433146359df4fb
-timeCreated: 1443802349
+timeCreated: 1443870637
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -73,8 +73,8 @@ TextureImporter:
         y: 1000
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_1
       rect:
@@ -83,8 +83,8 @@ TextureImporter:
         y: 1000
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_2
       rect:
@@ -93,8 +93,8 @@ TextureImporter:
         y: 1000
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_3
       rect:
@@ -103,8 +103,8 @@ TextureImporter:
         y: 1000
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_4
       rect:
@@ -113,8 +113,8 @@ TextureImporter:
         y: 1000
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_5
       rect:
@@ -123,8 +123,8 @@ TextureImporter:
         y: 500
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_6
       rect:
@@ -133,18 +133,18 @@ TextureImporter:
         y: 500
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_7
       rect:
         serializedVersion: 2
-        x: 1000
+        x: 990
         y: 500
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_8
       rect:
@@ -153,8 +153,8 @@ TextureImporter:
         y: 500
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_9
       rect:
@@ -163,8 +163,8 @@ TextureImporter:
         y: 500
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_10
       rect:
@@ -173,8 +173,8 @@ TextureImporter:
         y: 0
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_11
       rect:
@@ -183,8 +183,8 @@ TextureImporter:
         y: 0
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_12
       rect:
@@ -193,8 +193,8 @@ TextureImporter:
         y: 0
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_13
       rect:
@@ -203,8 +203,8 @@ TextureImporter:
         y: 0
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_14
       rect:
@@ -213,8 +213,8 @@ TextureImporter:
         y: 0
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: swallowSprites_15
       rect:
@@ -223,8 +223,8 @@ TextureImporter:
         y: 0
         width: 500
         height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .699999988, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
