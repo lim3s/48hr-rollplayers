@@ -182,4 +182,8 @@ public class FlightController : MonoBehaviour {
 			rb.angularVelocity = 0;
 		}
 	}
+
+	public float getCurrSpeed(){
+		return currSpeed;
+	}
 }

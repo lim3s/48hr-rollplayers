@@ -16,14 +16,14 @@ public class SoundEffects : MonoBehaviour {
 	public AudioClip drop;
 	public AudioClip objective;
 
-	AudioSource audio;
+	AudioSource myAudio;
 	float volume = 0.7f;
 
 	enum Effects {smashing, pickup, poop, traincrash, trainhorn, wallhit, flap, keycard, drop, objective};
 
 	// Use this for initialization
 	void Start () {
-		audio = GetComponent<AudioSource>();
+		myAudio = GetComponent<AudioSource>();
 	}
 	
 	public void playClip(string ID){
@@ -40,34 +40,34 @@ public class SoundEffects : MonoBehaviour {
 	void playClipFromID(Effects effect){
 		switch (effect) {
 		case Effects.pickup:
-			audio.PlayOneShot(pickup, volume);
+			myAudio.PlayOneShot(pickup, volume);
 			break;
 		case Effects.poop:
-			audio.PlayOneShot(poop, volume);
+			myAudio.PlayOneShot(poop, volume);
 			break;
 		case Effects.smashing:
-			audio.PlayOneShot(smashing, volume);
+			myAudio.PlayOneShot(smashing, volume);
 			break;
 		case Effects.traincrash:
-			audio.PlayOneShot(traincrash, volume);
+			myAudio.PlayOneShot(traincrash, volume);
 			break;
 		case Effects.trainhorn:
-			audio.PlayOneShot(trainhorn, volume);
+			myAudio.PlayOneShot(trainhorn, volume);
 			break;
 		case Effects.wallhit:
-			audio.PlayOneShot(wallhit, volume);
+			myAudio.PlayOneShot(wallhit, volume);
 			break;
 		case Effects.flap:
-			audio.PlayOneShot(flap, volume);
+			myAudio.PlayOneShot(flap, volume);
 			break;
 		case Effects.keycard:
-			audio.PlayOneShot(keycard, volume);
+			myAudio.PlayOneShot(keycard, volume);
 			break;
 		case Effects.drop:
-			audio.PlayOneShot(drop, volume);
+			myAudio.PlayOneShot(drop, volume);
 			break;
 		case Effects.objective:
-			audio.PlayOneShot(objective, volume);
+			myAudio.PlayOneShot(objective, volume);
 			break;
 		}
 	}
