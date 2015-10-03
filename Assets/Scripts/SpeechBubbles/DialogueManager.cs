@@ -8,16 +8,10 @@ public class DialogueManager : MonoBehaviour {
 
 	Dictionary<string, string> dialogue;
 
-	public static DialogueManager instance;
+	public bool ready = false;
+
 	// Use this for initialization
 	void Start () {
-		if (instance == null) {
-			DontDestroyOnLoad (gameObject);
-			instance = this;
-		} else if (instance != this) {
-			Destroy(gameObject);
-		}
-
 		dialogue = new Dictionary<string, string> ();
 		if (dialogueFile != null) {
 			string[] dialogueLines = dialogueFile.text.Split('\n');
@@ -26,6 +20,7 @@ public class DialogueManager : MonoBehaviour {
 				string[] singleLine = line.Split(':');
 				dialogue.Add(singleLine[0], singleLine[1]);
 			}
+			ready = true;
 			print ("Dialogue Loaded!");
 		}
 		GameObject.DontDestroyOnLoad (gameObject);

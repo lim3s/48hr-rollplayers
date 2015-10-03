@@ -44,6 +44,8 @@ public class FlightController : MonoBehaviour {
 	public bool wingsIn = false;
 	public bool flapping = false;
 	public bool standing = false;
+
+	int layerMask = 1 << 8;
 	// Use this for initialization
 	void Start () {
 		currStamina = maxStamina;
@@ -66,6 +68,9 @@ public class FlightController : MonoBehaviour {
 		RegenStamina ();
 		AddGravity ();
 		WingsInBoost ();
+		if (currVelocity.magnitude < 1) {
+			CheckStanding();
+		}
 	}
 
 	void Rotate() {
@@ -117,6 +122,9 @@ public class FlightController : MonoBehaviour {
 		if (currStamina < 1) {
 			return;
 		}
+		if (standing) {
+			standing = false;
+		}
 		// Flap forward
 		Vector2 flap = transform.right * flapStrength;
 		rb.velocity = rb.velocity + flap;
@@ -153,14 +161,15 @@ public class FlightController : MonoBehaviour {
 		}
 	}
 
-//	void CheckStanding() {
-//		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, raycastDist);
-//		Debug.DrawRay (transform.position, Vector2.down, Color.red, raycastDist);
-//		if (hit != null) {
-//			if (hit.transform.tag == "Wall") {
-//			}
-//		}
-//	}
+	void CheckStanding() {
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, raycastDist, layerMask);
+		if (hit) {
+			if (hit.transform.tag == "Wall") {
+				print ("standing");
+				standing = true;
+			}
+		}
+	}
 
 	void StartStun(float speed) {
 		print ("Stunned");

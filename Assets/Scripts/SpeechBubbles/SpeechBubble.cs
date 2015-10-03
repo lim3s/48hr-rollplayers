@@ -6,6 +6,8 @@ public class SpeechBubble : MonoBehaviour {
 
 	[SerializeField]
 	string dialogueName;
+	[SerializeField]
+	DialogueManager manager;
 
 	string dialogueText;
 	int numLines = 1;
@@ -14,51 +16,39 @@ public class SpeechBubble : MonoBehaviour {
 	TextMesh myText;
 	[SerializeField]
 	GameObject topBubble;
+
+	bool initial = true;
 	// Use this for initialization
 	void Start () {
-		dialogueText = DialogueManager.instance.GetDialogue (dialogueName);
 
-		StringBuilder sb = new StringBuilder ();
-		int charCount = 0;
-		foreach (string word in dialogueText.Split (' ')) {
-			if ((charCount + word.Length) > 50) {
-				sb.Append('\n');
-				sb.Append(word + " ");
-				charCount = 0;
-				numLines++;
-			} else {
-				sb.Append(word + " ");
-				charCount += word.Length;
-			}
-		}
-		dialogueText = sb.ToString();
-
-		myText.text = dialogueText;
-		float scale;
-		switch (numLines) {
-		case 1:
-		case 2:
-		case 3:
-			scale = 0.4f;
-			break;
-		case 4:
-		case 5:
-			scale = 0.65f;
-			break;
-		case 6:
-		case 7:
-			scale = 0.86f;
-			break;
-		default:
-			scale = 1.2f;
-			break;
-		}
-		topBubble.transform.localScale = new Vector2 (2.7f, scale);
-		Disappear ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (manager.ready && initial) {
+			initial = false;
+			dialogueText = manager.GetDialogue (dialogueName);
+			
+			StringBuilder sb = new StringBuilder ();
+			int charCount = 0;
+			foreach (string word in dialogueText.Split (' ')) {
+				if ((charCount + word.Length) > 30) {
+					sb.Append('\n');
+					sb.Append(word + " ");
+					charCount = 0;
+					numLines++;
+				} else {
+					sb.Append(word + " ");
+					charCount += word.Length;
+				}
+			}
+			dialogueText = sb.ToString();
+			
+			myText.text = dialogueText;
+
+			topBubble.transform.localScale = new Vector2 (1, 1 + 0.3f * (numLines-1));
+			Disappear ();
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
