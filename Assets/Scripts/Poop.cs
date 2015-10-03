@@ -16,4 +16,10 @@ public class Poop : MonoBehaviour {
 
 		transform.rotation = Quaternion.Lerp (transform.rotation, rotation, 10 *Time.deltaTime);
 	}
+
+	void OnTriggerEnter2D(Collider2D coll) {
+		if (coll.transform.tag == "Wall") {
+			Destroy (gameObject);
+		}
+	}
 }

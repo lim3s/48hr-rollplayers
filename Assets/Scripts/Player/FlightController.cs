@@ -21,6 +21,8 @@ public class FlightController : MonoBehaviour {
 	float regenRate = 0.2f;
 	[SerializeField]
 	float wingsInMultiplier = 1.2f;
+	[SerializeField]
+	float raycastDist = 3;
 
 	Vector2 currRot;
 	float currSpeed;
@@ -40,6 +42,7 @@ public class FlightController : MonoBehaviour {
 
 	public bool wingsIn = false;
 	public bool flapping = false;
+	public bool standing = false;
 	// Use this for initialization
 	void Start () {
 		currStamina = maxStamina;
@@ -54,7 +57,7 @@ public class FlightController : MonoBehaviour {
 		currSpeed = currVelocity.magnitude;
 		dragVector = currVelocity * -1;
 
-		if (!wingsIn) {
+		if (!wingsIn && !standing && !stunned) {
 			Rotate ();
 			CalcVelocity ();
 			AddVectors ();
@@ -116,12 +119,6 @@ public class FlightController : MonoBehaviour {
 		// Flap forward
 		Vector2 flap = transform.right * flapStrength;
 		rb.velocity = rb.velocity + flap;
-		// Flap up
-//		Vector2 flap = transform.up * strength;
-//		if (flap.y < 0) {
-//			flap *= -1;
-//		}
-//		rb.velocity += flap;
 		flapping = true;
 
 		currStamina -= 1;
@@ -156,6 +153,15 @@ public class FlightController : MonoBehaviour {
 		}
 	}
 
+//	void CheckStanding() {
+//		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, raycastDist);
+//		Debug.DrawRay (transform.position, Vector2.down, Color.red, raycastDist);
+//		if (hit != null) {
+//			if (hit.transform.tag == "Wall") {
+//			}
+//		}
+//	}
+
 	void StartStun(float speed) {
 		print ("Stunned");
 		stunned = true;
@@ -176,9 +182,7 @@ public class FlightController : MonoBehaviour {
 	}
 
 	void FixAngularVelocity() {
-		if (!stunned) {
-			rb.angularVelocity = 0;
-		}
+		rb.angularVelocity = 0;
 	}
 
 	public float getCurrSpeed(){
