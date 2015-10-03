@@ -148,13 +148,11 @@ public class FlightController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		print ("on collision");
 		if (coll.gameObject.tag == "Wall") {
-			print ("Collision");
 			if (coll.relativeVelocity.x > stunThreshold && !stunned) {
 				StartStun(coll.relativeVelocity.x);
+				rb.velocity -= Vector2.right * rb.velocity.x * 1.5f;
 			}
-			rb.velocity -= Vector2.right * rb.velocity.x * 1.5f;
 		}
 	}
 

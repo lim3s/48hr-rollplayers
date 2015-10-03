@@ -7,12 +7,15 @@ public class CameraFollow : MonoBehaviour {
 	FlightController flight;
 	Camera cam;
 
-	float speed = 50;
+	[SerializeField]
+	float speed = 0.1f;
 	float distance = 10;
-	float speedThreshold = 100;
+	float speedThreshold = 150;
 
 	float minZoom = 20;
-	float maxZoom = 40;
+	float maxZoom = 60;
+
+	public bool stall = true;
 
 	// Use this for initialization
 	void Start () {
@@ -22,14 +25,17 @@ public class CameraFollow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		if (stall) {
+			return;
+		}
 		float newSize = minZoom + ((flight.getCurrSpeed () / speedThreshold) * (maxZoom - minZoom));
 		if (newSize > maxZoom)
 			newSize = maxZoom;
 		else if (newSize < minZoom)
 			newSize = minZoom;
-		cam.orthographicSize = newSize;
+		cam.orthographicSize = Mathf.Lerp (cam.orthographicSize, newSize, 0.05f);
 
 		Vector3 newpos = new Vector3 (player.position.x, player.position.y, -10);
-		transform.position = Vector3.Lerp (transform.position, newpos, Time.fixedDeltaTime * speed);
+		transform.position = Vector3.Lerp (transform.position, newpos, speed);
 	}
 }

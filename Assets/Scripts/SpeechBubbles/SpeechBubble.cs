@@ -3,8 +3,6 @@ using System.Collections;
 using System.Text;
 
 public class SpeechBubble : MonoBehaviour {
-	[SerializeField]
-	DialogueManager dialogueManager;
 
 	[SerializeField]
 	string dialogueName;
@@ -18,7 +16,7 @@ public class SpeechBubble : MonoBehaviour {
 	GameObject topBubble;
 	// Use this for initialization
 	void Start () {
-		dialogueText = dialogueManager.GetDialogue (dialogueName);
+		dialogueText = DialogueManager.instance.GetDialogue (dialogueName);
 
 		StringBuilder sb = new StringBuilder ();
 		int charCount = 0;
@@ -51,8 +49,6 @@ public class SpeechBubble : MonoBehaviour {
 		case 7:
 			scale = 0.86f;
 			break;
-		case 8:
-		case 9:
 		default:
 			scale = 1.2f;
 			break;

@@ -7,8 +7,17 @@ public class DialogueManager : MonoBehaviour {
 	TextAsset dialogueFile;
 
 	Dictionary<string, string> dialogue;
+
+	public static DialogueManager instance;
 	// Use this for initialization
 	void Start () {
+		if (instance == null) {
+			DontDestroyOnLoad (gameObject);
+			instance = this;
+		} else if (instance != this) {
+			Destroy(gameObject);
+		}
+
 		dialogue = new Dictionary<string, string> ();
 		if (dialogueFile != null) {
 			string[] dialogueLines = dialogueFile.text.Split('\n');
