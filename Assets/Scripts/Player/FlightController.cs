@@ -163,6 +163,7 @@ public class FlightController : MonoBehaviour {
 		currStun = Mathf.Log(speed);
 		stunTimer = 0;
 		print ("Stun time: " + currStun);
+		SoundManager.myManager.myEffects.playClip("wallhit");
 	}
 
 	void TickStun() {

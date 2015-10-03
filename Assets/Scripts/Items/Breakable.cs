@@ -26,6 +26,7 @@ public class Breakable : MonoBehaviour {
 		broken = true;
 		myRenderer.sprite = brokenObj;
 		GetComponent<Collider2D> ().enabled = false;
+		SoundManager.myManager.myEffects.playClip ("smashing");
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {

@@ -25,7 +25,6 @@ public class PickupController : MonoBehaviour {
 				DropObject();
 			} else if (CheckProximity()){
 				PickupObject();
-				sprite.grab ();
 			} else {
 				Poop();
 			}
@@ -47,6 +46,8 @@ public class PickupController : MonoBehaviour {
 	void PickupObject(){
 		grabbedObj = GetClosest ().gameObject;
 		hasPickup = true;
+		sprite.grab ();
+		SoundManager.myManager.myEffects.playClip ("pickup");
 
 		Consumable consume = grabbedObj.gameObject.GetComponent<Consumable> ();
 		if (consume != null) {
@@ -60,7 +61,7 @@ public class PickupController : MonoBehaviour {
 	void Poop(){
 		GameObject poopy = (GameObject)Instantiate (poop, transform.position, Quaternion.identity);
 		poopy.GetComponent<Rigidbody2D> ().velocity = rb.velocity + Vector2.down * 5f;
-
+		SoundManager.myManager.myEffects.playClip ("poop");
 		Quaternion newRotation = Quaternion.Euler (transform.rotation.eulerAngles.x + 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 		poopy.transform.rotation = newRotation;
 		GameObject.Destroy (poopy, 10f);

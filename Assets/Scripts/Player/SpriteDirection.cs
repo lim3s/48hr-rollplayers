@@ -37,6 +37,7 @@ public class SpriteDirection : MonoBehaviour {
 		if (flight.flapping) {
 			anim.SetTrigger ("Flap");
 			flight.flapping = false;
+			SoundManager.myManager.myEffects.playClip("flap");
 		}
 	}
 
