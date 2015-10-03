@@ -34,9 +34,10 @@ public class FlightController : MonoBehaviour {
 
 	Vector2 newVel;
 
-	bool stunned = false;
+	public bool stunned = false;
 	float stunTimer = 0;
 	float currStun = 0;
+	float maxStun = 5;
 	[SerializeField]
 	float stunThreshold = 3f;
 
@@ -146,9 +147,8 @@ public class FlightController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Wall") {
-			if (coll.relativeVelocity.x > stunThreshold && !stunned) {
+			if (coll.relativeVelocity.magnitude > stunThreshold && !stunned && Mathf.Abs(Vector2.Dot (coll.contacts[0].normal, newVel)) > 0.5f) {
 				StartStun(coll.relativeVelocity.x);
-				rb.velocity -= Vector2.right * rb.velocity.x * 1.5f;
 			}
 		}
 	}
@@ -174,9 +174,11 @@ public class FlightController : MonoBehaviour {
 	void TickStun() {
 		if (stunned) {
 			stunTimer += Time.deltaTime * 3f;
-			print (stunTimer);
+			print (stunTimer + "/" + currStun);
 		}
 		if (stunTimer >= currStun) {
+			stunned = false;
+		} else if (stunTimer >= maxStun) {
 			stunned = false;
 		}
 	}
