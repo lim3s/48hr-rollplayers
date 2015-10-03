@@ -61,7 +61,7 @@ public class FlightController : MonoBehaviour {
 		}
 		RegenStamina ();
 		AddGravity ();
-//		WingsInBoost ();
+		WingsInBoost ();
 	}
 
 	void Rotate() {
@@ -94,11 +94,12 @@ public class FlightController : MonoBehaviour {
 		rb.velocity -= Vector2.up * gravity;
 	}
 
-//	void WingsInBoost() {
-//		if (wingsIn) {
-//			rb.velocity *= wingsInMultiplier;
-//		}
-//	}
+	void WingsInBoost() {
+		if (wingsIn) {
+			Vector2 wingBoost = transform.right * wingsInMultiplier;
+			rb.velocity = rb.velocity + wingBoost;
+		}
+}
 
 	public void Flap(float strength) {
 		if (strength > maxFlap) {
