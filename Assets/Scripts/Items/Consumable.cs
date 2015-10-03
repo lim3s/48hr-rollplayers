@@ -14,6 +14,6 @@ public class Consumable : Grabbable {
 	}
 
 	public void eat(){
-		GameObject.Destroy (this);
+		GameObject.Destroy (this.gameObject);
 	}
 }
