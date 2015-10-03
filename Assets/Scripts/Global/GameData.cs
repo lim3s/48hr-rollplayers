@@ -8,18 +8,18 @@ using System.Collections.Generic;
 public class GameData : MonoBehaviour {
 
 	public static GameData instance;
-
-	public static PlayerData myData;
+	public PlayerData myData;
 
 	// Use this for initialization
 	void Start () {
 		if (instance == null) {
+
 			DontDestroyOnLoad (gameObject);
 			instance = this;
 		} else if (instance != this) {
 			Destroy(gameObject);
 		}
-		if (myData == null) {
+		if (myData == null || !myData.isInitialised()) {
 			myData = new PlayerData();
 		}
 	}
@@ -44,14 +44,12 @@ public class GameData : MonoBehaviour {
 [Serializable]
 public class PlayerData{
 	bool[] trophies;
-	List<Vector3> graves;
 
 	public PlayerData(){
 		trophies = new bool[10];
 		for (int i=0; i < 10; i++) {
 			trophies[i] = false;
 		}
-		graves = new List<Vector3> ();
 	}
 
 	public void getTrophy(int trophyID){
@@ -59,16 +57,11 @@ public class PlayerData{
 			trophies [trophyID] = true;
 		}
 	}
-
-	public void clearGraves(int level){
-		graves.Clear ();
-	}
-
-	public void addGrave(int level, Vector3 position){
-		graves.Add (position);
-	}
-
-	public Vector3[] getGraves(int level){
-		return graves.ToArray ();
+	
+	public bool isInitialised(){
+		if (trophies == null || trophies.Length == 0) {
+			return false;
+		}
+		return true;
 	}
 }
