@@ -14,5 +14,8 @@ public class TrainScript : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		transform.position += transform.right * speed * Time.fixedDeltaTime;
+		if (transform.position.x > 0) {
+			Destroy(this.gameObject);
+		}
 	}
 }
