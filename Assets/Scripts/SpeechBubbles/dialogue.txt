@@ -8,3 +8,17 @@ beluga7:The beluga can change the shape of its bulbous forehead, called a "melon
 beluga8:In 2009, a captive beluga whale rescued a distressed participant of a free diving competition by pushing her to the surface.
 beluga9:Belugas, like other arctic whales, do not have dorsal fins , but they do have a tough dorsal ridge. They also have a thick layer of blubber that insulates them from the icy arctic waters.
 beluga10:Threats to beluga whales include climate change, hunting, oil and gas development, and industrial and urban pollution. Polar bears and killer whales are known predators of belugas throughout their Arctic range.
+squawk1:SQUAWK SQUAWK
+squawk2:CHRIP CHRIP
+squawk:BIRD NOISES
+hintlvl1_1:I remember seeing a pretty busted ass window round here somewhere.
+hintlvl1_2:Rest on the ground to regain your stamina, and not die.
+hintlvl1_3:You can pick up objects and even eat some of them. Useful and tasty!
+hintlvl2_1:Tourists are a bane on society.
+hintlvl2_2:Sky sky everywhere, but nowhere to go.
+hintlvl2_3:Trains roll under here pretty often. I would hate to be stuck down there with them.
+hintlvl2_4:Who did this?
+hintlvl3_1:NASA, National Aeronautics and Space Administration. Humans are cute.
+hintlvl3_2:Some old guy in there has a bean, you should steal it, it'll be funny and there will be no consequences I'm sure.
+rand1:Have you seen my brother? He looks like me and gives really bad advice.
+rand2:You sure do look ugly, who drew you?
