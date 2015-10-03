@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			vertical = GetComponent<Rigidbody2D>().velocity.normalized.y;
 		}
-		if (flight.wingsIn) {
+		if (flight.wingsIn || flight.stunned) {
 			horizontal = 0;
 			vertical = -1;
 			float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
