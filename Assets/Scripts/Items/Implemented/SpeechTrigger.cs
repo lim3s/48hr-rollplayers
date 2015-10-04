@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CamZoomTrigger : Trigger {
+public class SpeechTrigger : Trigger {
 	[SerializeField]
-	CameraFollow camFollow;
-	[SerializeField]
-	float zoom = 60;
+	SpeechBubble speech;
 	// Use this for initialization
 	void Start () {
+	
 	}
 	
 	// Update is called once per frame
@@ -16,6 +15,6 @@ public class CamZoomTrigger : Trigger {
 	}
 
 	public override void Activate() {
-		camFollow.minZoom = zoom;
+		speech.Activate ();
 	}
 }
