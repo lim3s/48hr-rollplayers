@@ -22,3 +22,4 @@ hintlvl3_1:NASA, National Aeronautics and Space Administration. Humans are cute.
 hintlvl3_2:Some old guy in there has a bean, you should steal it, it'll be funny and there will be no consequences I'm sure.
 rand1:Have you seen my brother? He looks like me and gives really bad advice.
 rand2:You sure do look ugly, who drew you?
+hidden1:You found me! I'll see you around.

@@ -13,7 +13,7 @@ public class Consumable : Grabbable {
 	
 	}
 
-	public void eat(){
-		GameObject.Destroy (this.gameObject);
+	public virtual void eat(){
+		Destroy (this.gameObject);
 	}
 }
