@@ -165,25 +165,21 @@ public class FlightController : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, raycastDist, layerMask);
 		if (hit) {
 			if (hit.transform.tag == "Wall") {
-				print ("standing");
 				standing = true;
 			}
 		}
 	}
 
 	void StartStun(float speed) {
-		print ("Stunned");
 		stunned = true;
 		currStun = Mathf.Log(speed);
 		stunTimer = 0;
-		print ("Stun time: " + currStun);
 		SoundManager.myManager.myEffects.playClip("wallhit");
 	}
 
 	void TickStun() {
 		if (stunned) {
 			stunTimer += Time.deltaTime * 3f;
-			print (stunTimer + "/" + currStun);
 		}
 		if (stunTimer >= currStun) {
 			stunned = false;

@@ -26,7 +26,6 @@ public class BackgroundMusic : MonoBehaviour {
 	}
 
 	public void startMusic(int level){
-		levelMusic.Stop ();
 		switch (level) {
 		case 1:
 			levelMusic.clip = title;

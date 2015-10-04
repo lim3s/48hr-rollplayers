@@ -31,7 +31,6 @@ public class KillPlayer : MonoBehaviour {
 	void OnLevelWasLoaded(){
 		if (graves != null && graves.Count > 0) {
 			for (int i=0; i< graves.Count; i++) {
-				print ("New grave");
 				Instantiate (grave, graves [i], Quaternion.identity);
 			}
 		}
