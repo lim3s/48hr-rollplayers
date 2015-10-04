@@ -21,17 +21,22 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Mathf.Abs (Input.GetAxis ("Horizontal")) > deadZone && !flight.wingsIn) {
+		if (Mathf.Abs (Input.GetAxis ("Horizontal")) > deadZone && !flight.wingsIn && !flight.standing) {
 			horizontal = Input.GetAxis ("Horizontal");
 		} else {
 			horizontal = GetComponent<Rigidbody2D>().velocity.normalized.x;
 		}
-		if (Mathf.Abs (Input.GetAxis ("Vertical")) > deadZone && !flight.wingsIn) {
+		if (Mathf.Abs (Input.GetAxis ("Vertical")) > deadZone && !flight.wingsIn && !flight.standing) {
 			vertical = Input.GetAxis ("Vertical");
 		} else {
 			vertical = GetComponent<Rigidbody2D>().velocity.normalized.y;
 		}
-		if (flight.wingsIn || flight.stunned) {
+		if (flight.standing) {
+			horizontal = 1;
+			vertical = 0; 
+			float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 1 * Time.deltaTime);
+		} else if (flight.wingsIn || flight.stunned) {
 			horizontal = 0;
 			vertical = -1;
 			float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
@@ -40,6 +45,8 @@ public class PlayerController : MonoBehaviour {
 			float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 5 * Time.deltaTime);
 		}
+
+
 
 		if (flight.superPowered) {
 			if (Input.GetAxis ("Flap") > 0.8){
