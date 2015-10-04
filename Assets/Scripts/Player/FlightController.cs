@@ -155,7 +155,6 @@ public class FlightController : MonoBehaviour {
 		Vector2 flap = transform.right * flapStrength *0.05f;
 		rb.velocity = rb.velocity + flap;
 		rb.velocity = Vector2.ClampMagnitude (rb.velocity, terminalVel);
-		flapping = true;
 		
 		//currStamina -= 1;
 	}

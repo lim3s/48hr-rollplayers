@@ -4,7 +4,7 @@ using System.Collections;
 public class LevelCapScript : MonoBehaviour {
 
 	void Update(){
-		if (GetComponent<FlightController> ().superPowered) {
+		if (FindObjectOfType<FlightController> ().superPowered) {
 			Destroy(this.gameObject);
 		}
 	}
