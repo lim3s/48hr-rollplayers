@@ -10,6 +10,8 @@ public class CreditsScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKey (KeyCode.JoystickButton1)) {
+			Application.LoadLevel(1);
+		}
 	}
 }

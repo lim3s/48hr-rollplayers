@@ -32,7 +32,11 @@ public class PlayerController : MonoBehaviour {
 			vertical = GetComponent<Rigidbody2D>().velocity.normalized.y;
 		}
 		if (flight.standing) {
-			horizontal = 1;
+			if(transform.right.x > 0){
+				horizontal = 1;
+			} else {
+				horizontal = -1;
+			}
 			vertical = 0; 
 			float rot = Mathf.Atan2 (vertical, horizontal) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 1 * Time.deltaTime);
