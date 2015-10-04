@@ -24,6 +24,12 @@ public class GameData : MonoBehaviour {
 		}
 	}
 
+	void Update(){
+		if(Input.GetKeyDown(KeyCode.JoystickButton6)){
+			Application.LoadLevel(1);
+		}
+	}
+
 	public void Save(string path){
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Open (Application.persistentDataPath + path, FileMode.Open);
