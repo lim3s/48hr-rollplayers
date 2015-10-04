@@ -19,6 +19,15 @@ public class SpeechBubble : MonoBehaviour {
 	[SerializeField]
 	GameObject topBubble;
 
+	[SerializeField]
+	bool following;
+	[SerializeField]
+	Transform toFollow;
+	[SerializeField]
+	float offsetX;
+	[SerializeField]
+	float offsetY;
+
 	bool initial = true;
 	float timer = 0;
 	bool visible = false;
@@ -60,11 +69,15 @@ public class SpeechBubble : MonoBehaviour {
 				Disappear();
 			}
 		}
+
+		if (following) {
+			transform.position = toFollow.position + new Vector3 (offsetX, offsetY, 0);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		//Show bubble
-		if (coll.transform.tag == "Player" && timer == 0) {
+		if (coll.transform.tag == "Player" && timer == 0 && !following) {
 			Activate();
 		}
 	}
