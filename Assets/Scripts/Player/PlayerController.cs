@@ -41,14 +41,20 @@ public class PlayerController : MonoBehaviour {
 			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * rot), 5 * Time.deltaTime);
 		}
 
+		if (flight.superPowered) {
+			if (Input.GetAxis ("Flap") > 0.8){
+				flight.Fart (timer);
+			}
+		} else {
 
-		if (Input.GetAxis ("Flap") > 0.8 && !flag) {
-			timer = 0;
-			flag = true;
-		}
-		if (Input.GetAxis ("Flap") < 0.2 && flag) {
-			flight.Flap (timer);
-			flag = false;
+			if (Input.GetAxis ("Flap") > 0.8 && !flag) {
+				timer = 0;
+				flag = true;
+			}
+			if (Input.GetAxis ("Flap") < 0.2 && flag) {
+				flight.Flap (timer);
+				flag = false;
+			}
 		}
 
 		if (Input.GetAxis ("WingsIn") > 0.8 && flag2) {

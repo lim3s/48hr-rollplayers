@@ -33,6 +33,8 @@ public class FlightController : MonoBehaviour {
 	float currStamina;
 
 	Vector2 newVel;
+	[SerializeField]
+	float terminalVel = 100;
 
 	public bool stunned = false;
 	float stunTimer = 0;
@@ -44,6 +46,7 @@ public class FlightController : MonoBehaviour {
 	public bool wingsIn = false;
 	public bool flapping = false;
 	public bool standing = false;
+	public bool superPowered = false;
 
 	int layerMask = 1 << 8;
 	// Use this for initialization
@@ -131,6 +134,30 @@ public class FlightController : MonoBehaviour {
 		flapping = true;
 
 		currStamina -= 1;
+	}
+
+	public void Fart(float strength) {
+		if (strength > maxFlap) {
+			strength = maxFlap;
+		} else if (strength < flapStrength) {
+			strength = flapStrength;
+		}
+		if (wingsIn) {
+			return;
+		}
+		if (currStamina < 1) {
+			return;
+		}
+		if (standing) {
+			standing = false;
+		}
+		// Flap forward
+		Vector2 flap = transform.right * flapStrength *0.05f;
+		rb.velocity = rb.velocity + flap;
+		rb.velocity = Vector2.ClampMagnitude (rb.velocity, terminalVel);
+		flapping = true;
+		
+		//currStamina -= 1;
 	}
 
 	void RegenStamina() {
