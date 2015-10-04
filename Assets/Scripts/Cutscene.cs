@@ -30,5 +30,8 @@ public class Cutscene : MonoBehaviour {
 				Application.LoadLevel(Application.loadedLevel + 1);
 			}
 		}
+		if (Input.GetKeyDown (KeyCode.JoystickButton0)) {
+			Application.LoadLevel(Application.loadedLevel + 1);
+		}
 	}
 }

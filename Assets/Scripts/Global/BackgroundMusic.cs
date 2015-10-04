@@ -26,6 +26,7 @@ public class BackgroundMusic : MonoBehaviour {
 	}
 
 	public void startMusic(int level){
+		levelMusic = GetComponent<AudioSource>();
 		switch (level) {
 		case 1:
 			levelMusic.clip = title;
