@@ -56,7 +56,6 @@ public class SpeechBubble : MonoBehaviour {
 
 		if (visible) {
 			timer += Time.deltaTime;
-			print (timer);
 			if (timer > duration) {
 				Disappear();
 			}

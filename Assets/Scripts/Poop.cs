@@ -19,7 +19,7 @@ public class Poop : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.transform.tag == "Wall") {
-			GameObject.Destroy(gameObject);
+			GameObject.DestroyImmediate(gameObject);
 		}
 	}
 }
