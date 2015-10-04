@@ -39,6 +39,12 @@ public class SpriteDirection : MonoBehaviour {
 			flight.flapping = false;
 			SoundManager.myManager.myEffects.playClip("flap");
 		}
+
+		if (flight.standing) {
+			anim.SetBool ("Standing", true);
+		} else {
+			anim.SetBool ("Standing", false);
+		}
 	}
 
 	public void grab(){

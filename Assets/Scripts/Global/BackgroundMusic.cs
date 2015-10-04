@@ -3,6 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class BackgroundMusic : MonoBehaviour {
+	public AudioClip title;
 	public AudioClip level1;
 	public AudioClip level2;
 	public AudioClip level2b;
@@ -16,34 +17,36 @@ public class BackgroundMusic : MonoBehaviour {
 	void Start () {
 		levelMusic = GetComponent<AudioSource>();
 		levelMusic.loop = true;
-		startMusic (0, 0);
 		levelMusic.volume = volume;
+		startMusic (Application.loadedLevel);
 	}
 
-	public void startMusic(int level, int stage){
-		float time = 0;
+	void OnLevelWasLoaded(){
+		startMusic (Application.loadedLevel);
+	}
+
+	public void startMusic(int level){
 		levelMusic.Stop ();
 		switch (level) {
-		case 0:
-			levelMusic.clip = level1;
-			break;
 		case 1:
-			if(stage == 0){
-				levelMusic.clip = level2;
-			} else if (stage == 1){
-				time = levelMusic.time;
-				levelMusic.clip = level2b;
-			}
+			levelMusic.clip = title;
 			break;
 		case 2:
-			if (stage == 0) {
-				levelMusic.clip = level3;
-			} else if (stage == 1){
-				levelMusic.clip = level3b;
-			}
+			levelMusic.clip = level1;
+			break;
+		case 3:
+			levelMusic.clip = level2;
+			break;
+		case 4:
+			levelMusic.clip = level2b;
+			break;
+		case 5:
+			levelMusic.clip = level3;
+			break;
+		case 6:
+			levelMusic.clip = level3b;
 			break;
 		}
 		levelMusic.Play ();
-		levelMusic.time = time;
 	}
 }
