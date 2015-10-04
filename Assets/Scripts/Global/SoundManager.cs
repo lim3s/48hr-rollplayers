@@ -5,7 +5,7 @@ public class SoundManager : MonoBehaviour {
 
 	public static SoundManager myManager;
 	public SoundEffects myEffects;
-	BackgroundMusic myMusic;
+	public BackgroundMusic myMusic;
 
 	// Use this for initialization
 	void Start () {

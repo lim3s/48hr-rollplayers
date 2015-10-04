@@ -9,6 +9,7 @@ public class PowerBean : Consumable {
 
 	public override void eat(){
 		FindObjectOfType<FlightController> ().superPowered = true;
+		SoundManager.myManager.myMusic.enterSpace ();
 		Destroy (this.gameObject);
 	}
 }

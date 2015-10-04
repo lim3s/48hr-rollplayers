@@ -8,7 +8,8 @@ public class BackgroundMusic : MonoBehaviour {
 	public AudioClip level2;
 	public AudioClip level2b;
 	public AudioClip level3;
-	public AudioClip level3b;
+	public AudioClip space;
+	public AudioClip end;
 
 	AudioSource levelMusic;
 	float volume = 0.7f;
@@ -25,7 +26,7 @@ public class BackgroundMusic : MonoBehaviour {
 		startMusic (Application.loadedLevel);
 	}
 
-	public void startMusic(int level){
+	void startMusic(int level){
 		levelMusic = GetComponent<AudioSource>();
 		switch (level) {
 		case 1:
@@ -44,9 +45,15 @@ public class BackgroundMusic : MonoBehaviour {
 			levelMusic.clip = level3;
 			break;
 		case 6:
-			levelMusic.clip = level3b;
+			levelMusic.clip = end;
 			break;
 		}
+		levelMusic.Play ();
+	}
+
+	public void enterSpace(){
+		levelMusic.Stop ();
+		levelMusic.clip = space;
 		levelMusic.Play ();
 	}
 }
