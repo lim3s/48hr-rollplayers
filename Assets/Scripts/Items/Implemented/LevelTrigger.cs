@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class LevelTrigger : Trigger {
-	[SerializeField]
-	Object nextScene;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,6 +14,6 @@ public class LevelTrigger : Trigger {
 	}
 
 	public override void Activate() {
-		Application.LoadLevel (nextScene.name);
+		Application.LoadLevel (Application.loadedLevel+1);
 	}
 }
