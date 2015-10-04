@@ -182,7 +182,7 @@ public class FlightController : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Wall") {
 			if (coll.relativeVelocity.magnitude > stunThreshold && !stunned && Mathf.Abs(Vector2.Dot (coll.contacts[0].normal, newVel))/newVel.magnitude > 0.5f) {
-				StartStun(coll.relativeVelocity.x);
+				StartStun(coll.relativeVelocity.magnitude);
 			}
 		}
 	}
