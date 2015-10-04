@@ -8,7 +8,7 @@ public class PickupController : MonoBehaviour {
 	private Rigidbody2D rb;
 	[HideInInspector]
 	public bool hasPickup;
-	public float pickupDist = 10f;
+	public float pickupDist = 30f;
 	private GameObject grabbedObj;
 
 	SpriteDirection sprite;

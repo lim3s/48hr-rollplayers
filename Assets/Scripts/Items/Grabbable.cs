@@ -27,6 +27,6 @@ public class Grabbable : MonoBehaviour {
 
 	public void dropObject(){
 		myCollider.enabled = true;
-		rb.gravityScale = 3;
+		rb.gravityScale = 1;
 	}
 }

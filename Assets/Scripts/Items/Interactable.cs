@@ -27,6 +27,7 @@ public class Interactable : MonoBehaviour {
 		if (coll != null) {
 			if (coll.gameObject.Equals(key) && !active) {
 				Activate ();
+				GameObject.Destroy(key);
 			}
 		}
 	}
