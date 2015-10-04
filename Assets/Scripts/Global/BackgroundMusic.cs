@@ -12,7 +12,7 @@ public class BackgroundMusic : MonoBehaviour {
 	public AudioClip end;
 
 	AudioSource levelMusic;
-	float volume = 0.7f;
+	float volume = 1.2f;
 
 	// Use this for initialization
 	void Start () {
