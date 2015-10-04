@@ -13,12 +13,9 @@ public class PowerBean : Consumable {
 
 	public override void eat(){
 		FindObjectOfType<FlightController> ().superPowered = true;
-<<<<<<< Updated upstream
 		SoundManager.myManager.myMusic.enterSpace ();
-=======
 		GameObject.Destroy (prevDialogue.gameObject);
 		nextDialogue.Activate ();
->>>>>>> Stashed changes
 		Destroy (this.gameObject);
 	}
 }
