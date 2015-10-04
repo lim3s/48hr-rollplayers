@@ -8,6 +8,8 @@ public class SpeechBubble : MonoBehaviour {
 	string dialogueName;
 	[SerializeField]
 	DialogueManager manager;
+	[SerializeField]
+	float duration = 10f;
 
 	string dialogueText;
 	int numLines = 1;
@@ -18,9 +20,11 @@ public class SpeechBubble : MonoBehaviour {
 	GameObject topBubble;
 
 	bool initial = true;
+	float timer = 0;
+	bool visible = false;
 	// Use this for initialization
 	void Start () {
-
+		manager = GameObject.FindGameObjectWithTag ("Manager").GetComponent<DialogueManager> ();
 	}
 	
 	// Update is called once per frame
@@ -49,18 +53,20 @@ public class SpeechBubble : MonoBehaviour {
 			topBubble.transform.localScale = new Vector2 (1, 1 + 0.3f * (numLines-1));
 			Disappear ();
 		}
+
+		if (visible) {
+			timer += Time.deltaTime;
+			print (timer);
+			if (timer > duration) {
+				Disappear();
+			}
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		//Show bubble
-		if (coll.transform.tag == "Player") {
+		if (coll.transform.tag == "Player" && timer == 0) {
 			Reappear ();
-		}
-	}
-
-	void OnTriggerExit2D(Collider2D coll) {
-		if (coll.transform.tag == "Player") {
-			Disappear ();
 		}
 	}
 
@@ -70,6 +76,7 @@ public class SpeechBubble : MonoBehaviour {
 	}
 
 	void Reappear() {
+		visible = true;
 		gameObject.GetComponent<MeshRenderer> ().enabled = true;
 		topBubble.GetComponent<SpriteRenderer> ().enabled = true;
 	}
