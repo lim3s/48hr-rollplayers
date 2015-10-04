@@ -72,6 +72,7 @@ public class FlightController : MonoBehaviour {
 		AddGravity ();
 		WingsInBoost ();
 		if (currVelocity.magnitude < 1) {
+			print ("pop");
 			CheckStanding();
 		}
 	}
@@ -125,13 +126,20 @@ public class FlightController : MonoBehaviour {
 		if (currStamina < 1) {
 			return;
 		}
+
+		// Flap forward
+		Vector2 flap;
+		if(standing){
+			flap = Vector2.up * flapStrength *3;
+		}else {
+			flap = transform.right * flapStrength;
+		}
+		rb.velocity = rb.velocity + flap;
+		flapping = true;
+
 		if (standing) {
 			standing = false;
 		}
-		// Flap forward
-		Vector2 flap = transform.right * flapStrength;
-		rb.velocity = rb.velocity + flap;
-		flapping = true;
 
 		currStamina -= 1;
 	}
@@ -188,8 +196,10 @@ public class FlightController : MonoBehaviour {
 	}
 
 	void CheckStanding() {
-		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, raycastDist, layerMask);
+		RaycastHit2D hit = Physics2D.Raycast (transform.position + Vector3.up*0.02f, Vector2.down, raycastDist, layerMask);
+		print (hit.transform != null);
 		if (hit) {
+			print (hit.transform.tag);
 			if (hit.transform.tag == "Wall") {
 				standing = true;
 			}
