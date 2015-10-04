@@ -23,3 +23,11 @@ hintlvl3_2:Some old guy in there has a bean, you should steal it, it'll be funny
 rand1:Have you seen my brother? He looks like me and gives really bad advice.
 rand2:You sure do look ugly, who drew you?
 hidden1:You found me! I'll see you around.
+hit1:Ouch
+hit2:Didn't see that one
+hit3:Good luck
+train:What a shame
+science1:This is it...
+science2:The saviour of humanity...
+science3:This bean shall save the world!
+science4:NO! DAMN PIDGEON

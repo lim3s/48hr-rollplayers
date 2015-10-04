@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour {
 	float speed = 0.1f;
 	float speedThreshold = 150;
 
-	float minZoom = 20;
+	public float minZoom = 20;
 	float maxZoom = 60;
 
 	float halfHeight;

@@ -65,8 +65,13 @@ public class SpeechBubble : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 		//Show bubble
 		if (coll.transform.tag == "Player" && timer == 0) {
-			Reappear ();
+			Activate();
 		}
+	}
+
+	public void Activate() {
+		visible = true;
+		Reappear ();
 	}
 
 	void Disappear() {
@@ -75,7 +80,7 @@ public class SpeechBubble : MonoBehaviour {
 	}
 
 	void Reappear() {
-		visible = true;
+
 		gameObject.GetComponent<MeshRenderer> ().enabled = true;
 		topBubble.GetComponent<SpriteRenderer> ().enabled = true;
 	}
