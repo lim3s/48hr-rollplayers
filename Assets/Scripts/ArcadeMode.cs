@@ -18,4 +18,8 @@ public class ArcadeMode : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void NewGoal() {
+		GameObject.Destroy (currGoal);
+	}
 }
