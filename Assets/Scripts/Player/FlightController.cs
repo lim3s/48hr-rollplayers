@@ -129,11 +129,8 @@ public class FlightController : MonoBehaviour {
 
 		// Flap forward
 		Vector2 flap;
-		if(standing){
-			flap = Vector2.up * flapStrength *3;
-		}else {
-			flap = transform.right * flapStrength;
-		}
+		flap = transform.right * flapStrength;
+
 		rb.velocity = rb.velocity + flap;
 		flapping = true;
 

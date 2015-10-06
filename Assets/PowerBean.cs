@@ -16,6 +16,7 @@ public class PowerBean : Consumable {
 		SoundManager.myManager.myMusic.enterSpace ();
 		GameObject.Destroy (prevDialogue.gameObject);
 		nextDialogue.Activate ();
+		FindObjectOfType<ObservitoryDoor> ().isOpen = true;
 		Destroy (this.gameObject);
 	}
 }
