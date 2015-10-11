@@ -72,7 +72,6 @@ public class FlightController : MonoBehaviour {
 		AddGravity ();
 		WingsInBoost ();
 		if (currVelocity.magnitude < 1) {
-			print ("pop");
 			CheckStanding();
 		}
 	}
@@ -188,18 +187,16 @@ public class FlightController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Wall") {
-			if (coll.relativeVelocity.magnitude > stunThreshold && !stunned && Mathf.Abs(Vector2.Dot (coll.contacts[0].normal, newVel))/newVel.magnitude > 0.5f) {
-				StartStun(coll.relativeVelocity.x);
-			}
-		}
+//		if (coll.gameObject.tag == "Wall") {
+//			if (coll.relativeVelocity.magnitude > stunThreshold && !stunned && Mathf.Abs(Vector2.Dot (coll.contacts[0].normal, newVel))/newVel.magnitude > 0.5f) {
+//				StartStun(coll.relativeVelocity.x);
+//			}
+//		}
 	}
 
 	void CheckStanding() {
 		RaycastHit2D hit = Physics2D.Raycast (transform.position + Vector3.up*0.02f, Vector2.down, raycastDist, layerMask);
-		print (hit.transform != null);
 		if (hit) {
-			print (hit.transform.tag);
 			if (hit.transform.tag == "Wall") {
 				standing = true;
 			}

@@ -9,7 +9,9 @@ public class CameraFollow : MonoBehaviour {
 	[SerializeField]
 	BoxCollider2D bounds;
 	[SerializeField]
-	float speed = 0.1f;
+	float speed = 0.5f;
+	[SerializeField]
+	float lookAhead = 5f;
 	float speedThreshold = 150;
 
 	public float minZoom = 20;
@@ -57,8 +59,11 @@ public class CameraFollow : MonoBehaviour {
 		maxX = bounds.bounds.max.x - halfWidth;
 		maxY = bounds.bounds.max.y - halfHeight;
 
+		float lerp = speed * player.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude;
+		float horizontalShift = (halfHeight / (-player.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude - 1));
+
 		Vector3 newpos = new Vector3 (player.position.x, player.position.y, -10);
-		transform.position = Vector3.Lerp (transform.position, newpos, speed);
+		transform.position = Vector3.Lerp (transform.position, newpos, lerp);
 		transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), Mathf.Clamp(transform.position.y, minY, maxY), -10);
 	}
 }

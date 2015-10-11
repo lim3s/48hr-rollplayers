@@ -21,14 +21,18 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Mathf.Abs (Input.GetAxis ("Horizontal")) > deadZone && !flight.wingsIn && !flight.standing) {
+		if (!flight.wingsIn && !flight.standing) {
 			horizontal = Input.GetAxis ("Horizontal");
 		} else {
 			horizontal = GetComponent<Rigidbody2D>().velocity.normalized.x;
 		}
-		if (Mathf.Abs (Input.GetAxis ("Vertical")) > deadZone && !flight.wingsIn && !flight.standing) {
+		if (!flight.wingsIn && !flight.standing) {
 			vertical = Input.GetAxis ("Vertical");
 		} else {
+			vertical = GetComponent<Rigidbody2D>().velocity.normalized.y;
+		}
+		if (Mathf.Abs (Input.GetAxis("Horizontal")) < deadZone && Mathf.Abs(Input.GetAxis("Vertical")) < deadZone) {
+			horizontal = GetComponent<Rigidbody2D>().velocity.normalized.x;
 			vertical = GetComponent<Rigidbody2D>().velocity.normalized.y;
 		}
 		if (flight.standing) {
